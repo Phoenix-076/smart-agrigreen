@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Smart AgriGreen</title>
+    <link rel="stylesheet" href="static/login.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js" type="module"></script>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js';
+        import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js';
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDuoOmODQyXouGNZ5HXvb5O3tdrb_lQVYA",
+            authDomain: "smart-agrigreen.firebaseapp.com",
+            projectId: "smart-agrigreen",
+            storageBucket: "smart-agrigreen.appspot.com",
+            messagingSenderId: "375327867764",
+            appId: "1:375327867764:web:2fd6220586e0eade80a221"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        window.onload = function() {
+            // Event listener for form submission
+            document.getElementById('login-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                // Check if the email or password fields are empty
+                if (!email || !password) {
+                    alert('Please fill in both the email and password fields.');
+                    return;
+                }
+
+                // Sign in with email and password
+                signInWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        if (user.emailVerified) {
+                            fetch('/set_session', { // Ensure this endpoint is correctly implemented
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ user_id: user.uid, user_name: user.displayName })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    window.location.href = '/dashboard';
+                                } else {
+                                    throw new Error(data.message);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Session setup failed:', error);
+                                alert('Failed to set session.');
+                            });
+                        } else {
+                            alert('Please verify your email first.');
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Login failed:', error);
+                        alert('Error: Invaid Credentials');
+                    });
+            });
+
+            // Google sign-in
+            document.getElementById('google-signin').addEventListener('click', async () => {
+                const provider = new GoogleAuthProvider();
+                provider.setCustomParameters({
+                    'prompt': 'select_account'  // This forces account selection
+                });
+                try {
+                    const result = await signInWithPopup(auth, provider);
+                    const user = result.user;
+                    console.log(user);
+                    // After successful Google sign-in, set session on your server
+                    fetch('/set_session', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ user_id: user.uid,user_name: user.displayName })  // Send user ID to backend
+                    }).then(response => response.json())
+                    .then(data => {
+                        console.log('Session set:', data);
+                        window.location.href = '/dashboard';  // Redirect on successful session set
+                    });
+                } catch (error) {
+                    console.error("Error during sign-in: ", error);
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <!-- Image overlay section -->
+            <div class="image-overlay">
+                <h2>Welcome to Smart AgriGreen</h2>
+                <p>AgriGreen uses IoT and AI to deliver smart, data-driven solutions for optimized, sustainable farming.</p>
+            </div>
+            
+            <!-- Form Section -->
+            <div class="form-side">
+                <form class="form" id="login-form">
+                    <h3>User Login</h3>
+                    <input type="email" id="email" name="email" placeholder="Email">
+                    <input type="password" id="password" name="password" placeholder="Password">
+                    <div class="actions">
+                        <a href="/signup">Register</a>
+                        <a href="/forgot_password">Forgot Password?</a>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                <div class="separator">
+                    <hr class="line">
+                    <span>or</span>
+                    <hr class="line">
+                </div>                
+                <button id="google-signin" class="google-signin">
+                    <img src="static/icon/google.png" alt="" class="google-icon">
+                    Continue with Google
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+    <link rel="stylesheet" href="static/history.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-left">
+            <img src="static/icon/logo.png" alt="Logo" class="logo">
+            <span class="brand-name">Smart AgriGreen</span>
+        </div>
+
+        <ul class="navbar-center">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/settings">Settings</a></li>
+            <li><a href="/plant_yield">Yield</a></li>
+            <li><a href="/history" class="active">History</a></li>
+        </ul>
+
+        <div class="navbar-right">
+            <span class="username">{{ user_name }}</span>
+            <a href="/logout" class="logout">
+                <img src="static/icon/logout.png" alt="Logout" class="logout-icon">
+            </a>
+        </div>
+    </nav>
+
+    <section class="table-container">
+        <div class="controls">
+            <form method="POST" action="/history">
+                <label for="dateSelect">Select Date:</label>
+                <input type="date" id="dateSelect" name="date" value="{{ selected_date }}" onchange="this.form.submit();">
+            </form>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Soil Moisture 1</th>
+                    <th>Soil Moisture 2</th>
+                    <th>Temperature</th>
+                    <th>Pump Status</th>
+                    <th>Fan Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if history_list %}
+                    {% for entry in history_list %}
+                        <tr>
+                            <td>{{ entry.time }}</td>
+                            <td>{{ entry.soil_moisture1 }} VWC</td>
+                            <td>{{ entry.soil_moisture2 }} VWC</td>
+                            <td>{{ entry.temperature }} °C</td>
+                            <td>{{ entry.pump_status }}</td>
+                            <td>{{ entry.fan_status }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="6">No data available for {{ selected_date }}</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>        
+    </section>
+
+</body>
+
+<footer class="footer">
+    <p>GCIT | 2024 | AI&DS | &copy; 2024 Smart AgriGreen. All rights reserved.</p>
+</footer>
+</html>

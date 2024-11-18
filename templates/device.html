@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Page</title>
+    <link rel="stylesheet" href="static/Device.css">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <img src="static/icon/logo.png" alt="Logo" class="logo">
+            <span class="brand-name">Smart AgriGreen</span>
+        </div>
+        
+        <ul class="navbar-center">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/settings">Settings</a></li>
+            <li><a href="/device" class="active">Devices</a></li>
+            <li><a href="/yield">Yield</a></li>
+            <li><a href="/history">History</a></li>
+        </ul>
+
+        <div class="navbar-right">
+            <span class="username">Lee Che Yong</span>
+            <a href="#logout" class="logout">
+                <img src="static/icon/logout.png" alt="Logout" class="logout-icon">
+            </a>
+        </div>
+    </nav>
+
+    <div class="control-panel">
+        <div class="dropdowns">
+            <select>
+                <option>Select date</option>
+            </select>
+            <select>
+                <option>Select plot</option>
+            </select>
+        </div>
+
+        <div class="control-grid">
+            <div class="control-box">
+                <p>OFF</p>
+                <img src="https://img.icons8.com/external-outline-lafs/64/null/external-lab-instruments-laboratory-outline-lafs.png" alt="Chemical Valve">
+                <p>Chemical Valve</p>
+                <label class="switch">
+                    <input type="checkbox" disabled>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            
+            <div class="control-box">
+                <p id="pumpStatusText">OFF</p>
+                <img src="static/icon/drainage.png" alt="Water Valve">
+                <p>Water Valve</p>
+                <label class="switch">
+                    <input type="checkbox" id="pumpSwitch" onchange="updateDeviceStatus('pump', this.checked)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="control-box">
+                <p id="fanStatusText">OFF</p>
+                <img src="https://img.icons8.com/ios/50/null/fan.png" alt="Exhaust Fan">
+                <p>Exhaust Fan</p>
+                <label class="switch">
+                    <input type="checkbox" id="fanSwitch" onchange="updateDeviceStatus('fan', this.checked)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="control-box">
+                <p>OFF</p> 
+                <img src="https://img.icons8.com/external-outline-lafs/64/null/external-humidifier-appliances-outline-lafs.png" alt="Humidifier">
+                <p>Humidifier</p>
+                <label class="switch">
+                    <input type="checkbox" disabled>
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>GCIT | 2024 | AI&DS | &copy; 2024 Smart AgriGreen. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDuoOmODQyXouGNZ5HXvb5O3tdrb_lQVYA",
+            authDomain: "smart-agrigreen.firebaseapp.com",
+            databaseURL: "https://smart-agrigreen-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "smart-agrigreen",
+            storageBucket: "smart-agrigreen.firebasestorage.app",
+            messagingSenderId: "375327867764",
+            appId: "1:375327867764:web:2fd6220586e0eade80a221"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // Update device status in Firebase
+        function updateDeviceStatus(device, isOn) {
+            const statusPath = `/manual_control/${device}_status`;
+            firebase.database().ref(statusPath).set(isOn ? 1 : 0);
+            document.getElementById(`${device}StatusText`).innerText = isOn ? "ON" : "OFF";
+        }
+
+        // Retrieve initial states for switches and display text on page load
+        firebase.database().ref('/manual_control').on('value', (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                document.getElementById('pumpSwitch').checked = data.pump_status === 1;
+                document.getElementById('pumpStatusText').innerText = data.pump_status === 1 ? "ON" : "OFF";
+                
+                document.getElementById('fanSwitch').checked = data.fan_status === 1;
+                document.getElementById('fanStatusText').innerText = data.fan_status === 1 ? "ON" : "OFF";
+            }
+        });
+    </script>
+</body>
+</html>

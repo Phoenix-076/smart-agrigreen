@@ -1,0 +1,295 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:'Times New Roman', Times, serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #BCE5B6;
+    padding: 0 15px;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    top: 0;
+    z-index: 1000;
+    
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.brand-name {
+    color: rgb(0, 0, 0);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-center {
+    list-style: none;
+    display: flex;
+    height: 100%;
+}
+
+.navbar-center li {
+    margin: 0;
+    height: 100%;
+}
+
+.navbar-center a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.navbar-center a:hover {
+    background-color: white;
+    color: black;
+}
+
+.navbar-center a.active {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    color: black;
+    font-weight: bold;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.username {
+    color: rgb(0, 0, 0);
+    margin-right: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    
+}
+
+.logout-icon {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+
+/* Ensure the body content is below the navbar */
+body {
+    padding-top: 50px;
+}
+
+
+
+/* device */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+} */
+
+/* .control-panel {
+    background-color: #d6efd6;
+    padding: 40px;
+    border-radius: 10px;
+    width: 700px;
+    text-align: center;
+}
+
+.dropdowns select {
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e5f5e5;
+    font-size: 16px;
+    cursor: pointer;
+} */
+
+/* .control-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.control-box {
+    background-color: #e5f5e5;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    height: 220px;
+} */
+
+/* .control-box img {
+    width: 60px;
+    height: 60px;
+    margin: 10px 0;
+}
+
+.control-box p {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+.switch {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 25px;
+} */
+
+/* .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+} */
+
+/* .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 2.5px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+} */
+
+/* input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+} */
+
+
+/* Footer Styles */
+.footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    /* bottom: 0; */
+    width: 100%;
+    height: 50px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+
+/* To keep the content above the footer */
+body {
+    margin-bottom: 20px; /* Add bottom margin to body content */
+}
+
+
+
+/* new */
+/* Main content */
+.container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.box {
+    background-color: #e7f5d9;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.plots {
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+    margin-top: 20px;
+}
+
+.plot {
+    text-align: center;
+}
+
+/* .plot-box {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #ccc;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+} */
+
+.plot-box {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.plot-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 5px;
+}

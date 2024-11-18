@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="static/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js for graphs -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
+
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <img src="static/icon/logo.png" alt="Logo" class="logo">
+            <span class="brand-name">Smart AgriGreen</span>
+        </div>
+        <ul class="navbar-center">
+            <li><a href="/dashboard" class="active">Dashboard</a></li>
+            <li><a href="/settings">Settings</a></li>
+            <li><a href="/plant_yield">Yield</a></li>
+            <li><a href="/history">History</a></li>
+        </ul>
+        <div class="navbar-right">
+            <span class="username">{{user_name}}</span>
+            <a href="/logout" class="logout">
+                <img src="static/icon/logout.png" alt="Logout" class="logout-icon">
+            </a>
+        </div>
+    </nav>
+
+    <!-- Graph Sections -->
+    <main>
+        <!-- Bar Graph Section (Water Usage) -->
+        <section class="graph-section">
+            <h2>Water Usage</h2>
+            <!-- Canvas for Scatter Plot -->
+            <div class="chart-container">
+                <canvas id="scatterPlot" width="200" height="50"></canvas>
+            </div>
+        </section>
+
+
+       <!-- Sensor Graph Section (Temperature, Humidity, Moisture, Soil pH) -->
+        <section class="graph-section">
+            <h2>Sensors</h2>
+            <div class="header-with-select">
+                <label for="plotSelect">Select Plot:</label>
+                <select id="plotSelect">
+                    <option value="">Select a Plot</option>
+                    <option value="plot1">Plot 1</option>
+                    <option value="plot2">Plot 2</option>
+                    <!-- Add more as needed -->
+                </select>
+            </div>
+            <div class="chart" style="display: flex;justify-content: center;">
+                <div class="moisture" style="margin:0 5% 0 2%;text-align: center;">
+                    <p>Soil Moisture Sensor 1</p>
+                    <div id='gaugeMoisture'></div>
+                </div>
+                <div class="moisture2" style="margin:0 5% 0 2%;text-align: center;">
+                    <p>Soil Moisture Sensor 2</p>
+                    <div id='gaugeMoisture2'></div>
+                </div>
+                <div class="temperature"  style="margin:0 5% 0 2%;text-align: center;">
+                    <p>Temperature Sensor</p>
+                    <div id='gaugeTemperature'></div>
+                </div>
+            </div>
+            
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div>GCIT | 2024 | AI&DS | &copy; 2024 Smart AgriGreen. All rights reserved.</div>
+    </footer>
+
+    <script type="module" src="static/js/script.js"></script> <!-- Link to the JavaScript file -->
+    <script src="static/js/chart.js"></script> <!-- Link to the JavaScript file -->
+    <!-- Firebase App (core SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <!-- Firebase Database -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+
+
+</body>
+</html>

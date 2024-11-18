@@ -1,0 +1,202 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:'Times New Roman', Times, serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #BCE5B6;
+    padding: 0 15px;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    top: 0;
+    z-index: 1000;
+    
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.brand-name {
+    color: rgb(0, 0, 0);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-center {
+    list-style: none;
+    display: flex;
+    height: 100%;
+}
+
+.navbar-center li {
+    margin: 0;
+    height: 100%;
+}
+
+.navbar-center a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.navbar-center a:hover {
+    background-color: white;
+    color: black;
+}
+
+.navbar-center a.active {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    color: black;
+    font-weight: bold;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.username {
+    color: rgb(0, 0, 0);
+    margin-right: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    
+}
+
+.logout-icon {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+
+/* Ensure the body content is below the navbar */
+body {
+    padding-top: 20px;
+}
+
+
+/* Graph Section Styles */
+
+.graph-section {
+    margin: 40px 0;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-weight: bold;
+
+}
+
+.graph-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+.gauges-row {
+    display: flex;
+    justify-content: space-around; /* Space the sensors evenly across the row */
+    align-items: center;
+    gap: 30px; /* Adjust space between each sensor container */
+    padding: 20px;
+}
+
+.gauge-container {
+    text-align: center;
+    width: 180px; /* Sets a fixed width for each sensor block */
+    height: 379px;
+}
+
+.sensor-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+/* Adjustments to the sensor values display */
+.graph-section div p {
+    font-size: 1rem; /* Set the font size */
+    font-weight: bold; /* Make the font bold */
+    color: black; /* Set the font color, if needed */
+    margin: 5px 0; /* Add some margin for spacing */
+}
+
+/* Styling for the gauge description */
+
+#gauge_div_moisture {
+    margin-bottom: 80px; /* Add space below the gauge */
+}
+#gauge_div_temperature {
+    margin-bottom: 80px; /* Add space below the gauge */
+}
+#gauge_div_humidity {
+    margin-bottom: 80px; /* Add space below the gauge */
+}
+/* Enhancing the value display section */
+.value-display {
+    background-color: #c1e2c1; /* Light background for the value area */
+    padding: 10px 0px; /* Padding inside the value display box */
+    padding-left: 10px;
+    margin: 10px 0; /* Space above and below the value display box */
+    border-radius: 5px; /* Rounded corners for the value display box */
+    width: 200px;
+}
+
+
+
+.header-with-select {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: flex-end; /* Align the content to the right */
+
+}
+
+canvas {
+    max-width: 100%;
+    height: 400px;
+}
+
+p {
+    margin-top: 10px;
+    width: 200px;
+   
+}
+
+/* Footer Styles */
+.footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}

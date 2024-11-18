@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('img/background.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Center container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding-top: 30px;
+}
+
+/* Box containing the form and image */
+.box {
+    width: 380px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Image overlay section */
+.image-overlay {
+    background-image: url('img/background.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 50px 40px;
+    text-align: center;
+    color: white;
+    position: relative;
+    height: 230px;
+}
+
+.image-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+    z-index: 1;
+}
+
+.image-overlay h2, .image-overlay p {
+    position: relative;
+    z-index: 2; /* Keep the text above the overlay */
+}
+
+
+.image-overlay h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.image-overlay p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Form Side */
+.form-side {
+    padding: 20px;
+    background-color: white;
+}
+
+.form-side .form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-side .form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.actions a {
+    color: #00796b;
+    text-decoration: none;
+}
+
+.actions a:hover {
+    text-decoration: underline;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #00796b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2cc402;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.separator .line {
+    flex: 1;
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 0 10px;
+}
+
+.separator span {
+    white-space: nowrap;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Add this to your CSS file */
+.google-icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle; /* This aligns the image vertically with the text */
+}
+
+.google-signin {
+    background-color: aliceblue;
+    border-radius: 10px;
+    border: none;
+    padding: 3%;
+    width: 100%;
+}

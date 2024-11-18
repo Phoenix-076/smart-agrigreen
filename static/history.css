@@ -1,0 +1,198 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:'Times New Roman', Times, serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #BCE5B6;
+    padding: 0 15px;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    top: 0;
+    z-index: 1000;
+    
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.brand-name {
+    color: rgb(0, 0, 0);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-center {
+    list-style: none;
+    display: flex;
+    height: 100%;
+}
+
+.navbar-center li {
+    margin: 0;
+    height: 100%;
+}
+
+.navbar-center a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.navbar-center a:hover {
+    background-color: white;
+    color: black;
+}
+
+.navbar-center a.active {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    color: black;
+    font-weight: bold;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.username {
+    color: rgb(0, 0, 0);
+    margin-right: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    
+}
+
+.logout-icon {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+
+/* Ensure the body content is below the navbar */
+body {
+    padding-top: 20px;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:'Times New Roman', Times, serif;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Add margin to the right of the date select label and input */
+#dateSelect,
+label[for="dateSelect"] {
+    margin-right: 10px; /* Adjust the value as needed */
+}
+
+
+/* To keep the content above the footer */
+body {
+    margin-bottom: 50px; /* Add bottom margin to body content */
+}
+
+
+body {
+    font-family:'Times New Roman', Times, serif;
+    background-color: #f4f4f9;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+
+.table-container {
+    margin: 20px;
+    width: 80%;
+    height: auto;
+}
+
+.controls {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.controls button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #f0f4e3;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table thead {
+    background-color: #d0eacb;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    height: 80px;
+}
+
+table td {
+    background-color: #fff;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+footer {
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    position: fixed;
+    width: 100%;
+    /* height: 50px; */
+    font-size: 1rem;
+    bottom: 0;
+}

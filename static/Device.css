@@ -1,0 +1,396 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:'Times New Roman', Times, serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #BCE5B6;
+    padding: 0 15px;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    top: 0;
+    z-index: 1000;
+    
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.brand-name {
+    color: rgb(0, 0, 0);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-center {
+    list-style: none;
+    display: flex;
+    height: 100%;
+}
+
+.navbar-center li {
+    margin: 0 15px;
+    height: 100%;
+}
+
+.navbar-center a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    /* border-radius: 5px; */
+}
+
+.navbar-center a:hover {
+    background-color: white;
+    color: black;
+}
+
+.navbar-center a.active {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    color: black;
+    font-weight: bold;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.username {
+    color: rgb(0, 0, 0);
+    margin-right: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    
+}
+
+.logout-icon {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.logout-icon:hover {
+    color:rgb(255, 255, 255);
+
+}
+
+/* Ensure the body content is below the navbar */
+body {
+    padding-top: 0px;
+}
+
+/* device */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f2f7e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.control-panel {
+    background-color: #d6efd6;
+    padding: 30px;
+    border-radius: 10px;
+    width: 800px;
+    text-align: center;
+    /* margin-top: 200px; */
+    margin-bottom: 100px; /* Space above the footer */
+}
+
+.dropdowns select {
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e5f5e5;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.control-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.control-box {
+    background-color: #e5f5e5;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    height: 220px;
+}
+
+.control-box img {
+    width: 60px;
+    height: 60px;
+    margin: 10px 0;
+}
+
+.control-box p {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+.switch {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 25px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 2.5px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+
+/* Footer Styles */
+.footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top:auto;
+}
+
+/* To keep the content above the footer */
+body {
+    margin-bottom:auto; /* Add bottom margin to body content */
+}
+
+/* new 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F3F8F3;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #D8E6D8;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.user-profile span {
+    margin-right: 10px;
+}
+
+.logout {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.controls select {
+    padding: 8px;
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.devices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.device {
+    background-color: #E1EDE1;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.device img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.device p {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.status {
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.status.on {
+    color: green;
+}
+
+.status.off {
+    color: red;
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 34px;
+    cursor: pointer;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}

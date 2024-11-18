@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up - Smart AgriGreen</title>
+    <link rel="stylesheet" href="static/signup.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js" type="module"></script>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDuoOmODQyXouGNZ5HXvb5O3tdrb_lQVYA",
+            authDomain: "smart-agrigreen.firebaseapp.com",
+            projectId: "smart-agrigreen",
+            storageBucket: "smart-agrigreen.appspot.com",
+            messagingSenderId: "375327867764",
+            appId: "1:375327867764:web:2fd6220586e0eade80a221"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        window.onload = function() {
+            document.getElementById('signup-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+
+                // Check if any field is empty
+                if (!name || !email || !password || !confirmPassword) {
+                    alert('All fields are required.');
+                    return;
+                }
+
+                // Validate email format using a regular expression
+                const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+                if (!emailPattern.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+
+                // Check if passwords match
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match.');
+                    return;
+                }
+
+                // Proceed with Firebase signup
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        // Update the user profile with the provided name
+                        updateProfile(userCredential.user, {
+                            displayName: name
+                        }).then(() => {
+                            sendEmailVerification(userCredential.user);
+                            alert('Please check your email to verify your account.');
+                        }).catch((error) => {
+                            console.error('Error updating user profile:', error);
+                            alert('Error updating profile: ' + error.message);
+                        });
+                    })
+                    .catch((error) => {
+                        console.error('Error signing up:', error);
+                        alert('Error during signup: ' + error.message);
+                    });
+            });
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <!-- Image overlay section -->
+            <div class="image-overlay">
+                <h2>Welcome to Smart AgriGreen</h2>
+                <p>AgriGreen uses IoT and AI to deliver smart, data-driven solutions for optimized, sustainable farming.</p>
+            </div>
+
+            <!-- Form Section -->
+            <div class="form-side">
+                <form class="form" id="signup-form" action="login.html" method="post">
+                    <h3>User Registration</h3>
+                    <input type="email" id="email" name="email" placeholder="Email">
+                    <input type="text" id="name" name="name" placeholder="Name" >
+                    <input type="password" id="password" name="password" placeholder="Password" >
+                    <input type="password" id="confirm-password" placeholder="Confirm Password" >
+                    <p>Already have an account? <a href="/">Login</a></p>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

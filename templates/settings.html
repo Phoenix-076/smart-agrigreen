@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="static/settings.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <img src="static/icon/logo.png" alt="Logo" class="logo">
+            <span class="brand-name">Smart AgriGreen</span>
+        </div>
+        <ul class="navbar-center">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/settings" class="active">Settings</a></li>
+            <li><a href="/plant_yield">Yield</a></li>
+            <li><a href="/history">History</a></li>
+        </ul>
+        <div class="navbar-right">
+            <span class="username">{{user_name}}</span>
+            <a href="/logout" class="logout">
+                <img src="static/icon/logout.png" alt="Logout" class="logout-icon">
+            </a>
+        </div>
+    </nav>
+    <div class="control-panel">
+        <div class="control-grid">
+            <!-- <div class="control-box">
+                <p>OFF</p>
+                <img src="https://img.icons8.com/external-outline-lafs/64/null/external-lab-instruments-laboratory-outline-lafs.png" alt="Chemical Valve">
+                <p>Chemical Valve</p>
+                <label class="switch">
+                    <input type="checkbox" disabled>
+                    <span class="slider"></span>
+                </label>
+            </div> -->
+            
+            <div class="control-box">
+                <p id="pumpStatusText">OFF</p>
+                <img src="static/icon/drainage.png" alt="Water Valve">
+                <p>Water Valve</p>
+                <label class="switch">
+                    <input type="checkbox" id="pumpSwitch" onchange="updateDeviceStatus('pump', this.checked)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="control-box">
+                <p id="fanStatusText">OFF</p>
+                <img src="https://img.icons8.com/ios/50/null/fan.png" alt="Exhaust Fan">
+                <p>Exhaust Fan</p>
+                <label class="switch">
+                    <input type="checkbox" id="fanSwitch" onchange="updateDeviceStatus('fan', this.checked)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <!-- <div class="control-box">
+                <p>OFF</p> 
+                <img src="https://img.icons8.com/external-outline-lafs/64/null/external-humidifier-appliances-outline-lafs.png" alt="Humidifier">
+                <p>Humidifier</p>
+                <label class="switch">
+                    <input type="checkbox" disabled>
+                    <span class="slider"></span>
+                </label>
+            </div> -->
+        </div>
+
+        <!-- Sensor Data for Thresholds -->
+        <div class="sensor-data">
+        <!-- Moisture Thresholds -->
+        <div class="sensor-box">
+            <h3>Moisture</h3>
+            <div class="min-max-box">
+                <p>Minimum</p>
+                <div><input type="number" id="moistureMin" value="0"></div>
+                <p>Maximum</p>
+                <div><input type="number" id="moistureMax" value="5000"></div>
+            </div>
+        </div>
+
+
+            <!-- Temperature Thresholds -->
+            <div class="sensor-box">
+                <h3>Temperature</h3>
+                <div class="min-max-box">
+                    <p>Minimum</p>
+                    <div><input type="number" id="tempMin" value="0"></div>
+                    <p>Maximum</p>
+                    <div><input type="number" id="tempMax" value="50"></div>
+                </div>
+            </div>
+
+          
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="settings-main">
+        <!-- Plot Selector -->
+        <!-- <div class="header-with-select">
+            <label for="plotSelect">Select Plot:</label>
+            <select id="plotSelect">
+                <option value="">Select a Plot</option>
+                <option value="plot1">Plot 1</option>
+                <option value="plot2">Plot 2</option>
+            </select>
+        </div> -->
+
+        
+
+        <!-- Manual Instructions Section -->
+        <div class="manual-instructions">
+            <h3>Manual Instructions</h3>
+            <div class="table-container">
+                <table class="manual-table">
+                    <thead>
+                        <tr>
+                            <th>Dzongkhag</th>
+                            <th>Temperature</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bumthang</td>
+                            <td>18°C - 25°C</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Buttons
+        <div class="button-section">
+            <button class="confirm-btn">Confirm</button>
+            <button class="reset-btn">Reset</button>
+        </div> -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>GCIT | 2024 | AI&DS | &copy; 2024 Smart AgriGreen. All rights reserved.</p>
+    </footer>
+
+    <!-- Firebase Compatibility Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDuoOmODQyXouGNZ5HXvb5O3tdrb_lQVYA",
+            authDomain: "smart-agrigreen.firebaseapp.com",
+            databaseURL: "https://smart-agrigreen-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "smart-agrigreen",
+            storageBucket: "smart-agrigreen.firebasestorage.app",
+            messagingSenderId: "375327867764",
+            appId: "1:375327867764:web:2fd6220586e0eade80a221"  
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        
+        // Update device status in Firebase
+        function updateDeviceStatus(device, isOn) {
+            const statusPath = `/manual_control/${device}_status`;
+            firebase.database().ref(statusPath).set(isOn ? 1 : 0);
+            document.getElementById(`${device}StatusText`).innerText = isOn ? "ON" : "OFF";
+        }
+
+        // Retrieve initial states for switches and display text on page load
+        firebase.database().ref('/manual_control').on('value', (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                document.getElementById('pumpSwitch').checked = data.pump_status === 1;
+                document.getElementById('pumpStatusText').innerText = data.pump_status === 1 ? "ON" : "OFF";
+                
+                document.getElementById('fanSwitch').checked = data.fan_status === 1;
+                document.getElementById('fanStatusText').innerText = data.fan_status === 1 ? "ON" : "OFF";
+            }
+        });
+
+        // Fetch and Display Thresholds on Page Load
+        function fetchAndDisplayThresholds() {
+            db.ref('/settings/thresholds/temperature').once('value').then(snapshot => {
+                const data = snapshot.val();
+                document.getElementById("tempMin").value = data.min || 0;
+                document.getElementById("tempMax").value = data.max || 50;
+            }).catch(error => {
+                console.error("Error fetching temperature thresholds:", error);
+            });
+
+            db.ref('/settings/thresholds/moisture').once('value').then(snapshot => {
+                const data = snapshot.val();
+                document.getElementById("moistureMin").value = data.min || 0;
+                document.getElementById("moistureMax").value = data.max || 5000;
+            }).catch(error => {
+                console.error("Error fetching moisture thresholds:", error);
+            });
+        }
+
+        // Update Thresholds in Firebase on Input Change
+        function updateThreshold(sensorType, min, max) {
+            const path = `/settings/thresholds/${sensorType}`;
+            db.ref(path).set({
+                min: parseInt(min, 10), // Convert to integer
+                max: parseInt(max, 10)  // Convert to integer
+            }).then(() => {
+                console.log(`${sensorType} thresholds updated`);
+            }).catch((error) => {
+                console.error(`Failed to update ${sensorType} thresholds: `, error);
+            });
+        }
+
+        // Set Up Event Listeners for Input Changes
+        document.addEventListener("DOMContentLoaded", function() {
+            // Fetch and display existing thresholds
+            fetchAndDisplayThresholds();
+
+            // Event listeners for temperature threshold updates
+            document.getElementById("tempMin").addEventListener("change", () => {
+                const min = document.getElementById("tempMin").value;
+                const max = document.getElementById("tempMax").value;
+                updateThreshold("temperature", min, max);
+            });
+
+            document.getElementById("tempMax").addEventListener("change", () => {
+                const min = document.getElementById("tempMin").value;
+                const max = document.getElementById("tempMax").value;
+                updateThreshold("temperature", min, max);
+            });
+
+            // Event listeners for moisture threshold updates
+            document.getElementById("moistureMin").addEventListener("change", () => {
+                const min = document.getElementById("moistureMin").value;
+                const max = document.getElementById("moistureMax").value;
+                updateThreshold("moisture", min, max);
+            });
+
+            document.getElementById("moistureMax").addEventListener("change", () => {
+                const min = document.getElementById("moistureMin").value;
+                const max = document.getElementById("moistureMax").value;
+                updateThreshold("moisture", min, max);
+            });
+        });
+    </script>
+</body>
+</html>

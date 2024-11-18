@@ -1,0 +1,333 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    padding-top: 70px; /* To account for fixed navbar */
+    background-color: #F9F9F9;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #BCE5B6;
+    padding: 0 15px;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    top: 0;
+    z-index: 1000;
+}
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.brand-name {
+    color: rgb(0, 0, 0);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-center {
+    list-style: none;
+    display: flex;
+    height: 100%;
+}
+
+.navbar-center li {
+    margin: 0;
+    height: 100%;
+}
+
+.navbar-center a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    /* border-radius: 5px; */
+}
+.navbar-center a:hover {
+    background-color: white;
+    color: black;
+}
+
+.navbar-center a.active {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    color: black;
+    font-weight: bold;
+}
+.navbar-right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.username {
+    color: rgb(0, 0, 0);
+    margin-right: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    
+}
+.logout-icon {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+.header-with-select {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content:flex-start; /* Align the content to the right */
+    margin-left: 10px;
+
+}
+/* Sensor Data Section */
+.sensor-data {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    gap: 20px; /* Added spacing */
+}
+
+.sensor-box {
+    background-color: #E7F5E7;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 35%; /* Adjusted for better fit */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+}
+
+.sensor-box input {
+    width: 70px;
+    padding: 4px;
+    border-radius: 5px;
+    border: 1px solid #A8D3A8;
+    text-align: center;
+}
+
+.min-max-box {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.min-max-box div {
+    margin-right: 10px; /* Add margin between the input fields and the next label */
+}
+/* Buttons Section */
+.button-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.confirm-btn, .reset-btn {
+    background-color: #A8D3A8;
+    border: none;
+    padding: 4px 15px; /* Increased button padding */
+    margin: 0 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.confirm-btn:hover, .reset-btn:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000; /* Adds a black border on hover */
+
+}
+
+/* Manual Instructions Section */
+.manual-instructions {
+    margin: 15px 0;
+    margin-left: 150px;
+    margin-bottom: 40px;
+}
+
+.manual-table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    margin-left: 2px;
+}
+
+.manual-table th, .manual-table td {
+    padding: 12px; /* More padding */
+    border: 1px solid #A8D3A8;
+    text-align: center;
+    background-color: #E7F5E7;
+}
+
+/* Responsive Table Container */
+.table-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.table-container table {
+    width: 100%;
+    max-width: 200px; /* Increased width */
+}
+
+/* Footer */
+.footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar-center {
+        flex-wrap: wrap;
+    }
+
+    .navbar-center a {
+        font-size: 1rem;
+        margin: 5px;
+    }
+
+    .sensor-data {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sensor-box {
+        width: 90%;
+    }
+
+    .confirm-btn, .reset-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .manual-table th, .manual-table td {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}
+
+
+
+.control-panel {
+    background-color: #d6efd6;
+    padding: 30px;
+    border-radius: 10px;
+    width: 1000px;
+    text-align: center;
+    margin-left: 150px;
+    /* margin-top: 200px; */
+    margin-bottom: 50px; /* Space above the footer */
+}
+
+.dropdowns select {
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e5f5e5;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.control-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.control-box {
+    background-color: #e5f5e5;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    height: 220px;
+}
+
+.control-box img {
+    width: 60px;
+    height: 60px;
+    margin: 10px 0;
+}
+
+.control-box p {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+.switch {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 25px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 2.5px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
